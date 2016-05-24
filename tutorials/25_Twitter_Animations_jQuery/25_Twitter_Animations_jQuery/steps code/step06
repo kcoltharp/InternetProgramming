@@ -1,0 +1,12 @@
+		<script type="text/javascript" src="scripts/jquery.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+	
+			// Your jQuery code will slot in here
+  
+			});
+	
+	</script>
+

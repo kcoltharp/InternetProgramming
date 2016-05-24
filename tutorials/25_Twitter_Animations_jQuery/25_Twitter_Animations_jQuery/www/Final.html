@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Twitter Animation</title>
+		<!-- Insert your code here //-->
+		<script type="text/javascript" src="scripts/jquery.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var url = "http://search.twitter.com/search.json?q=iphone&rpp=15&callback=?";
+				var tweets = $('<ul id="tweets">').appendTo("#tweetscontainer");
+     		    $.getJSON(url,  function(data){
+					$.each(data.results, function(i,item){
+						tweets.append('<li><div><img src="' + item.profile_image_url +'" alt="' + item.from_user + '" width="73" height="73" /><p><a href="http://twitter.com/'+item.from_user+'/statuses/'+item.id+'" title="Click here to view this on twitter">'+item.from_user+'</a> at '+item.created_at+': '+item.text.replace(/(\w+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+)/gi, '<a href="$1">$1</a>').replace(/[\@]+([A-Za-z0-9-_]+)/gi, '<a href="http://twitter.com/$1">@$1</a>')+'</p></div></li>');
+						var speed=Math.floor(Math.random()*10)+1;
+						var offsettop=Math.floor(Math.random()*400)+10;
+						$("#tweets li:last").data("speed",speed).css({top:offsettop,right:2000+(i*30)});
+      				});
+					var t = setInterval(function(){
+						$("#tweets li").not(".hover").each(function(){
+							speed = $(this).data("speed");
+							xpos = $(this).css("left");
+							if(parseInt(xpos)<-330) {
+								$(this).stop().css({left:2000});
+								xpos = 2000;								
+							}
+							newxpos = parseInt(xpos)-parseInt(speed);
+							$(this).css({left:newxpos});
+						});						
+					},30);
+					$("#tweets li").hover(function(){
+						$(this).addClass("hover");
+						$(this).css({zIndex:1000});
+					},function(){
+						$(this).removeClass("hover");
+					});
+				});
+  			});
+		</script>
+		<style>
+			body {
+				font-family:	arial, helv, sans-serif;
+				font-size:		66%;
+				background:		#f9f9f9;
+				padding:		20px;
+			}
+			
+			#container {
+				position:		relative;
+				width:			1024px;
+				height:			700px;
+				margin:			auto;
+				background:		transparent url(styles/background.jpg) no-repeat top left;
+				border:			20px solid white;
+				box-shadow:		0px 0px 10px #000;
+				overflow:		hidden;
+			}
+			
+			#trees {
+				position:		relative;
+				width:			1024px;
+				height:			700px;
+				margin:			auto;
+				background:		transparent url(styles/trees.png) no-repeat top left;
+			}
+			
+			#tweets {
+				position:		absolute;
+				top:			0;
+				left:			0;
+				width:			2000px;
+				margin-left:	-300px;
+				padding:		0;
+				font-size:		1em;
+			}
+
+			#tweets li {
+				position:		absolute;
+				top:			100px;
+				left:			2000px;
+				margin:			0;
+				padding:		0;
+				list-style:		none;
+				clear:			left;
+				background:		transparent url(styles/smallbird.png) no-repeat center center;
+				width:			200px;
+				height:			117px;
+			}
+			
+			#tweets li div {
+				display:		none;
+				padding:		10px;
+				background:		rgba(0,0,0,0.7);
+				color:			#fff;
+				min-height:		93px;
+				margin-top:		100px;
+			}
+			
+			#tweets li:hover div {
+				display:		block;
+			}
+			
+			#tweets li div img {
+				float:			left;
+				margin:			0px 10px 10px 0px;
+			}
+			
+			#tweets li p {
+				padding:		0;
+				margin-top:		0;
+				margin-left:	87px;
+			}
+			
+			#tweets li a {
+				font-weight:	bold;
+				text-decoration:none;
+				color:			#CF6;
+			}
+
+			#tweets li a:hover {
+				text-decoration:underline;
+			}	
+		
+		</style>
+		<!-- End Insert code area //-->
+	</head>
+	<body>
+		<div id="container">
+			<div id="trees">
+				<div id="tweetscontainer">
+		
+				
+				
+				
+				</div>
+			</div>
+		</div>
+</body>
+</html>

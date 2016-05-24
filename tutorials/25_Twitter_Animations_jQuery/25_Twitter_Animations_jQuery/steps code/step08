@@ -1,0 +1,6 @@
+$.getJSON(url,  function(data){
+	
+$.each(data.results, function(i,item){
+				
+tweets.append('<li><div><img src="' + item.profile_image_url +'" alt="' + item.from_user + '" width="73" height="73" /><p><a href="http://twitter.com/'+item.from_user+'/statuses/'+item.id+'" title="Click here to view this on twitter">'+item.from_user+'</a> at '+item.created_at+': '+item.text.replace(/(\w+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+)/gi, '<a href="$1">$1</a>').replace(/[\@]+([A-Za-z0-9-_]+)/gi, '<a href="http://twitter.com/$1">@$1</a>')+'</p></div></li>'); });
+});

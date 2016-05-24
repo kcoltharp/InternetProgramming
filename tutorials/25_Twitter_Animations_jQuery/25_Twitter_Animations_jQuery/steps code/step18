@@ -1,0 +1,13 @@
+$("#tweets li").not(".hover").each(functio…
+
+$("#tweets li").hover(function(){
+	
+	$(this).addClass("hover");
+		
+	$(this).css({zIndex:1000});
+					
+},function(){
+						
+$(this).removeClass("hover");
+					
+});

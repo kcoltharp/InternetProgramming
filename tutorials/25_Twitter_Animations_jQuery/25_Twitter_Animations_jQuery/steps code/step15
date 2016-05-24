@@ -1,0 +1,5 @@
+ var t = setInterval(function(){
+			
+// we’ll set the position of each bird every 30 milliseconds
+
+},30); 
