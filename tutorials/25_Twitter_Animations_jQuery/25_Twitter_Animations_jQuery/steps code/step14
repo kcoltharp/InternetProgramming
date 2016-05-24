@@ -1,3 +1,0 @@
-var offsettop=Math.floor(Math.random()*400)+10;
-			
-$("#tweets li:last").data("speed",speed).css({top:offsettop,right:2000+(i*30)});
